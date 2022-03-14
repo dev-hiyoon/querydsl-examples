@@ -81,4 +81,30 @@ class MemberJpaRepositoryTest {
         assertThat(result).extracting("username").containsExactly(member4.getUsername());
     }
 
+    // 위에거 보다는 요걸 선호
+    @Test
+    public void searchTest_wherebooleanexpression() {
+        Team temaA = new Team("teamA");
+        Team temaB = new Team("teamB");
+        em.persist(temaA);
+        em.persist(temaB);
+
+        Member member1 = new Member("member1", 10, temaA);
+        Member member2 = new Member("member2", 20, temaA);
+        Member member3 = new Member("member3", 30, temaB);
+        Member member4 = new Member("member4", 40, temaB);
+
+        em.persist(member1);
+        em.persist(member2);
+        em.persist(member3);
+        em.persist(member4);
+
+        MemberSearchCondition condition = new MemberSearchCondition();
+        condition.setAgeGoe(35);
+        condition.setAgeLoe(40);
+
+        List<MemberTeamDto> result = memberJpaRepository.search(condition);
+
+        assertThat(result).extracting("username").containsExactly(member4.getUsername());
+    }
 }
