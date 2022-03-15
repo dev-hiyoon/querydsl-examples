@@ -5,11 +5,9 @@ import com.hiyoon.querydsl.dto.MemberTeamDto;
 import com.hiyoon.querydsl.dto.QMemberTeamDto;
 import com.hiyoon.querydsl.entity.Member;
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import java.util.List;
